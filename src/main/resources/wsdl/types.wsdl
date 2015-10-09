@@ -1,0 +1,54 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://webservice.com" name="HelloWebservice" targetNamespace="http://webservice.com">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.com" elementFormDefault="qualified" targetNamespace="http://webservice.com" version="1.0">
+            <xs:element name="sayBye" type="tns:sayBye"/>
+            <xs:element name="sayByeResponse" type="tns:sayByeResponse"/>
+            <xs:element name="sayHello">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sayHelloResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sayHelloReturn" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="sayBye">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="sayByeResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="sayHello">
+        <wsdl:part element="ns1:sayHello" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="sayByeResponse">
+        <wsdl:part element="ns1:sayByeResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="sayHelloResponse">
+        <wsdl:part element="ns1:sayHelloResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="sayBye">
+        <wsdl:part element="ns1:sayBye" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="HelloWebservice">
+        <wsdl:operation name="sayHello">
+            <wsdl:input message="ns1:sayHello" name="sayHello"></wsdl:input>
+            <wsdl:output message="ns1:sayHelloResponse" name="sayHelloResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sayBye">
+            <wsdl:input message="ns1:sayBye" name="sayBye"></wsdl:input>
+            <wsdl:output message="ns1:sayByeResponse" name="sayByeResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>
